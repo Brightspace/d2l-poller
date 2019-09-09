@@ -1,0 +1,19 @@
+{
+  "name": "d2l-poller",
+  "version": "1.0.0",
+  "description": "An ES6 module to emit periodic events.",
+  "main": "d2l-poller.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brightspace/d2l-poller.git"
+  },
+  "author": "D2L Corporation",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Brightspace/d2l-poller/issues"
+  },
+  "homepage": "https://github.com/Brightspace/d2l-poller#readme"
+}
