@@ -1,5 +1,4 @@
-let poll = false,
-	intervalId;
+let intervalId;
 
 // interval is in ms
 export function setupPolling(interval) {
@@ -10,26 +9,14 @@ export function setupPolling(interval) {
 		teardownPolling();
 	}
 	intervalId = setInterval(() => {
-		if (poll) {
-			const event = new CustomEvent('d2l-poll', {
-				message: 'This is an event from d2l-poller'
-			});
-			dispatchEvent(event);
-		}
+		const event = new CustomEvent('d2l-poll', {
+			message: 'This is an event from d2l-poller'
+		});
+		dispatchEvent(event);
 	}, interval);
-	poll = true;
 }
 
 export function teardownPolling() {
-	poll = false;
 	clearInterval(intervalId);
 	intervalId = undefined;
-}
-
-export function suspendPolling() {
-	poll = false;
-}
-
-export function resumePolling() {
-	poll = true;
 }
