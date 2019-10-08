@@ -7,8 +7,8 @@ export class D2LPoller {
 		if (!interval || interval <= 0) {
 			throw (new Error(`Invalid interval: ${interval}`));
 		}
-		if (intervalId) {
-			teardownPolling();
+		if (this.intervalId) {
+			this.teardownPolling();
 		}
 		this.intervalId = setInterval(() => {
 			const event = new CustomEvent('d2l-poll', {

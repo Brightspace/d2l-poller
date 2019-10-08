@@ -1,6 +1,6 @@
 {
   "name": "d2l-poller",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "An ES6 module to emit periodic events.",
   "main": "d2l-poller.js",
   "scripts": {
