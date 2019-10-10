@@ -19,7 +19,7 @@ export class D2LPoller {
 	}
 
 	teardownPolling() {
-		clearInterval(intervalId);
+		clearInterval(this.intervalId);
 		this.intervalId = undefined;
 	}
 }
