@@ -1,9 +1,11 @@
 export class D2LPoller {
 	constructor() {
 		this.intervalId = undefined;
+		this.eventName = 'd2l-poll';
 	}
 
-	setupPolling(interval) {
+	setupPolling(interval, eventName) {
+		this.eventName = eventName || 'd2l-poll';
 		if (!interval || interval <= 0) {
 			throw (new Error(`Invalid interval: ${interval}`));
 		}
@@ -11,7 +13,7 @@ export class D2LPoller {
 			this.teardownPolling();
 		}
 		this.intervalId = setInterval(() => {
-			const event = new CustomEvent('d2l-poll', {
+			const event = new CustomEvent(this.eventName, {
 				message: 'This is an event from d2l-poller'
 			});
 			dispatchEvent(event);
