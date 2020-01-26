@@ -1,25 +1,26 @@
 export class D2LPoller {
-	constructor() {
-		this.intervalId = undefined;
-	}
-
+	/**
+	 * @param {number} interval - Event interval, in milliseconds.
+	 * @param {string} [eventName='d2l-poll'] - The name of the emitted CustomEvent. 
+	 */
 	setupPolling(interval, eventName) {
-		if (!interval || interval <= 0) {
-			throw (new Error(`Invalid interval: ${interval}`));
+		if (typeof interval !== 'number' || interval <= 0) {
+			throw new Error(`Invalid interval: ${interval}`);
 		}
-		if (this.intervalId) {
-			this.teardownPolling();
-		}
-		this.intervalId = setInterval(() => {
-			const event = new CustomEvent(eventName || 'd2l-poll', {
+
+		const pollEvent = new CustomEvent(eventName || 'd2l-poll', {
+			detail: {
 				message: 'This is an event from d2l-poller'
-			});
-			dispatchEvent(event);
-		}, interval);
+			}
+		});
+		
+		this.teardownPolling();
+
+		this.intervalId = setInterval(() => dispatchEvent(pollEvent), interval);
 	}
 
 	teardownPolling() {
 		clearInterval(this.intervalId);
-		this.intervalId = undefined;
+		delete this.intervalId;
 	}
 }
